@@ -1,24 +1,22 @@
-
 def merge_sort(arr)
   if arr.length == 1
-    return  arr
+    return arr
   else
-    first_half = merge_sort(arr.slice!(0...arr.length/2))
-    second_half = merge_sort(arr)
+    first = merge_sort(arr.slice!(0...arr.length/2))
+    second = merge_sort(arr.slice!(0..-1))
   end
 
-  arr = []
-   while (first_half.length > 0 || second_half.length > 0)
-     if (first_half.empty?)
-       arr << second_half.slice!(0)
-     elsif (second_half.empty?)
-       arr << first_half.slice!(0)
-     elsif (first_half[0] <= second_half[0])
-       arr << first_half.slice!(0)
-     elsif (second_half[0] < first_half[0])
-       arr << second_half.slice!(0)
-     end
-   end
+  while (!first.empty? || !second.empty?)
+    if(first.empty?)
+      arr << second.slice!(0)
+    elsif (second.empty?)
+      arr << first.slice!(0)
+    elsif (first[0] <= second[0])
+      arr << first.slice!(0)
+    elsif (second[0] < first[0])
+      arr << second.slice!(0)
+    end
+  end
 
   return arr
 end
